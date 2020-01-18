@@ -1,4 +1,4 @@
-package MongoDB;
+﻿package MongoDB;
 
 import java.util.Iterator;
 import java.util.Scanner;
@@ -63,37 +63,37 @@ public class GestorMongoDB {
 	}
 	public static void conectarBD() {
 		try {
-		mongo = new MongoClient( "localhost" , 27017 ); 
-		database = mongo.getDatabase("AccesoDatos");
+			mongo = new MongoClient( "localhost" , 27017 ); 
+			database = mongo.getDatabase("AccesoDatos");
 		} catch (MongoSocketOpenException e) {
-            System.out.println("Error al conectarse con la base de datos");
-        }
-    }
+			System.out.println("Error al conectarse con la base de datos");
+		}
+	}
 
 	public static void insertar() {
-		
+
 		conectarBD();
 		MongoCollection<Document> collection = database.getCollection("alumno"); 
 		try {
-		System.out.println("Escribe el ID del alumno");
-		int insertarid=teclado.nextInt();
-		teclado.nextLine();
-		System.out.println("Escribe el Nombre del alumno");
-		String insertarnombre=teclado.nextLine();
-		System.out.println("Escribe el Apellido del alumno");
-		String insertarapellido=teclado.nextLine();
-		System.out.println("Escribe el Curso del alumno");
-		String insertarcurso=teclado.nextLine();
-		System.out.println("Escribe la Fecha de Nacimiemto del alumno");
-		String insertarfecha=teclado.nextLine();
-		Document document = new Document("id", "MongoDB") 
-				.append("id", insertarid)
-				.append( "nombre", insertarnombre) 
-				.append("apellidos", insertarapellido) 
-				.append("grupo", insertarcurso)
-				.append("fecha_nacimiento", insertarfecha);  
-		collection.insertOne(document); 
-		System.out.println("INSERTADO CON EXITO");
+			System.out.println("Escribe el ID del alumno");
+			int insertarid=teclado.nextInt();
+			teclado.nextLine();
+			System.out.println("Escribe el Nombre del alumno");
+			String insertarnombre=teclado.nextLine();
+			System.out.println("Escribe el Apellido del alumno");
+			String insertarapellido=teclado.nextLine();
+			System.out.println("Escribe el Curso del alumno");
+			String insertarcurso=teclado.nextLine();
+			System.out.println("Escribe la Fecha de Nacimiemto del alumno");
+			String insertarfecha=teclado.nextLine();
+			Document document = new Document("id", "MongoDB") 
+					.append("id", insertarid)
+					.append( "nombre", insertarnombre) 
+					.append("apellidos", insertarapellido) 
+					.append("grupo", insertarcurso)
+					.append("fecha_nacimiento", insertarfecha);  
+			collection.insertOne(document); 
+			System.out.println("INSERTADO CON EXITO");
 		}catch(MongoException ex){
 			System.out.println("ERROR AL INSERTAR");
 		}
@@ -174,12 +174,12 @@ public class GestorMongoDB {
 	public static void eliminar() {
 		conectarBD();
 		try {
-		int id;
-		System.out.println("escribe el id del alumno que desees eliminar");
-		id=teclado.nextInt();
-		MongoCollection<Document> collection = database.getCollection("alumnos");
-		collection.deleteOne(new Document("id", id));
-		System.out.println("ELIMIDADO CON EXITO");
+			int id;
+			System.out.println("escribe el id del alumno que desees eliminar");
+			id=teclado.nextInt();
+			MongoCollection<Document> collection = database.getCollection("alumnos");
+			collection.deleteOne(new Document("id", id));
+			System.out.println("ELIMIDADO CON EXITO");
 		}catch(MongoException ex){
 			System.out.println("ERROR AL ELIMINAR");
 		}
@@ -199,13 +199,7 @@ public class GestorMongoDB {
 		case 1:		 
 			FindIterable<Document> iterable = database.getCollection("alumnos").find();//escribo el nombre de la coleccion
 			for (Document document : iterable) {
-				System.out.println("||---------------------------------------------------------------------||");
-				System.out.println("||"+"ID: "+iterable.first().getInteger("id"));
-				System.out.println("||"+"NOMBRE: "+iterable.first().getString("nombre"));
-				System.out.println("||"+"APELLIDOS: "+iterable.first().getString("apellidos"));
-				System.out.println("||"+"GRUPO: "+iterable.first().getString("grupo"));
-				System.out.println("||"+"FECHA DE NACIMIENTO: "+iterable.first().getString("fecha_nacimiento"));
-				System.out.println("||---------------------------------------------------------------------||");
+				System.out.println(document);
 			}
 			break;
 		case 2:
@@ -213,15 +207,9 @@ public class GestorMongoDB {
 			visualizargrupo=teclado.nextLine();
 			FindIterable<Document> dc= database.getCollection("alumnos").find(new Document("grupo",visualizargrupo));
 			for (Document document : dc) {
-				System.out.println("||---------------------------------------------------------------------||");
-				System.out.println("||"+"ID: "+dc.first().getInteger("id"));
-				System.out.println("||"+"NOMBRE: "+dc.first().getString("nombre"));
-				System.out.println("||"+"APELLIDOS: "+dc.first().getString("apellidos"));
-				System.out.println("||"+"GRUPO: "+dc.first().getString("grupo"));
-				System.out.println("||"+"FECHA DE NACIMIENTO: "+dc.first().getString("fecha_nacimiento"));
-				System.out.println("||---------------------------------------------------------------------||");
+				System.out.println(document);
 			}
-			
+
 			break;
 		case 3:
 			System.out.println("Escribe el ID del alumno que quieres visualizar");
