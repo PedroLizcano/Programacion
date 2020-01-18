@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<alumnos>
+    <alumno id="1">
+        <nombre>Samuel</nombre>
+        <apellidos>Caballero Calvo</apellidos>
+        <grupo>DAM</grupo>
+        <fecha_nacimiento>08/08/1990</fecha_nacimiento>
+    </alumno>
+
+    ...
+
+    <alumno id="100">
+        <nombre>Lara</nombre>
+        <apellidos>Castillo Iglesias</apellidos>
+        <grupo>DAM</grupo>
+        <fecha_nacimiento>06/05/1983</fecha_nacimiento>
+    </alumno>
+
+</alumnos>
